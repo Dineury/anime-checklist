@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import SearchBar from './components/Searchbar'
+import Navbar from './components/Navbar'
 
 function App() {
 const [animes, setAnimes] = useState([])
@@ -20,7 +21,7 @@ function addToList(listName, anime) {
 
 const handleSearch = async (query) => {
   try {
-    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`)
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=10`)
     const data = await res.json();
     setAnimes(data.data)
   } catch(err) {
@@ -30,19 +31,22 @@ const handleSearch = async (query) => {
 
   return (
     <>
-        <div>
+      <Navbar />
+    
+    <div className='max-w-[1920px] mx-auto px-4 p-[2em] text-center justify-self-center ' >
+        <div id='Search-bar-div' className='items-center' >  
       <h1>🎌 Anime Checklist</h1>
       <p>Search for an anime below 👇</p>
       <SearchBar onSearch={handleSearch}/>
     </div>
+   <div className=' justify-center grid grid-cols-3 gap-30 m-10 ' >
       {
         animes.map(anime => {
-          console.log(anime)
-          return (<div id='container_wrapper' key={anime.mal_id} >
+          return (<div id='image_wrapper' key={anime.mal_id} className='w-[201px]  border-2 m-auto bg-linear-to-br from-gray-400 to-gray-800  ' >
   <div id='anime_container' >
               <img src={anime.images.jpg.image_url} className='anime_img'/>
               <p>{anime.title}</p>
-              <select>
+              <select className='options-container' >
                 <option value="Watching">Watching</option>
                 <option value="completed">completed</option>
                 <option value="Plan to watch">Plan to watch</option>
@@ -52,6 +56,8 @@ const handleSearch = async (query) => {
           )
         })
       }
+     </div>
+    </div>
     </>
   )
 }

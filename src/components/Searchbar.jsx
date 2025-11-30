@@ -13,11 +13,16 @@ const handleSubmit = (e) => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}  >
             <div > 
-            <input placeholder="Hola" 
+            <input className="m-3 bg-white placeholder-black-500 text-xl pr-2 pl-2 w-64 rounded-2xl"
+            
+            placeholder="What can I get you today?!" 
             value={searchBar} 
-            onChange={handleSearch}/>
+            onChange={handleSearch}
+            id="search-input"
+            />
+            
             </div>
         </form>
     )
