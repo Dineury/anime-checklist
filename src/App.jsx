@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import SearchBar from './components/Searchbar'
 import Navbar from './components/Navbar'
+import Recommendations from './components/Recommendations'
 
 function App() {
 const [animes, setAnimes] = useState([])
@@ -40,19 +41,19 @@ const handleSearch = async (query) => {
       <SearchBar onSearch={handleSearch}/>
     </div>
    <div className=' justify-center grid grid-cols-3 gap-30 m-10 ' >
+    
       {
         animes.map(anime => {
-          return (<div id='image_wrapper' key={anime.mal_id} className='w-[201px]  border-2 m-auto bg-linear-to-br from-gray-400 to-gray-800  ' >
-  <div id='anime_container' className='relative' >
+          return (<div key={anime.mal_id} className=' image_wrapper  w-[201px]  border-2 m-auto bg-linear-to-br from-gray-400 to-gray-800  ' >
+  <div  className=' anime_container relative' >
               <div className="three-dots absolute top-0.5 right-2 text-2xl bg-cyan-600 p-0.2 rounded">⋮</div>
                   <select name='drop-down' className='options-container absolute   opacity-0 cursor-pointer' >
                 <option value="Watching">Watching</option>
                 <option value="completed">completed</option>
                 <option value="Plan to watch">Plan to watch</option>
               </select>
-                <div/>
-            
-              <img src={anime.images.jpg.image_url} className='anime_img'/>
+              
+              <img src={anime.images.jpg.image_url} className='anime_img' alt={anime.title}/>
               <p>{anime.title}</p>
             </div>
           </div>
@@ -61,6 +62,7 @@ const handleSearch = async (query) => {
       }
      </div>
     </div>
+      <Recommendations />
     </>
   )
 }
