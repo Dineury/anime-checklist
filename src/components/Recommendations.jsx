@@ -24,22 +24,18 @@ try {
 useEffect(() => {
     handleFetch()
 },[])
-/* 
-Use this CSS propprties to fix the Size and Width of the Dropdown 
-    right: 7px;
-    bottom: 269px;
-    width: 10px;
-    height: 32px;
-*/
+
 return (
     <div className=" flex flex-wrap" >
         {
         recommend.map(anime => {
-            return(<div  key={anime.mal_id} className='image_wrapper  w-[201px]  border-2 m-auto bg-linear-to-br from-gray-400 to-gray-800  ' >
-  <div  className=' anime_container  relative' >
+            return(<div  key={anime.mal_id} 
+            className='image_wrapper  w-50.25  border-2 m-auto bg-linear-to-br from-gray-400 to-gray-800  ' >
 
+  <div  className=' anime_container  relative' >
               <div className="three-dots absolute top-0.5 right-2 text-2xl bg-cyan-600 p-0.2 rounded">⋮</div>
-                  <select name='drop-down' className='options-container absolute   opacity-100 cursor-pointer' > 
+                  <select name='drop-down'
+                   className='options-container absolute  w-3/45 pb-2 right-1/35 opacity-0 cursor-pointer' > 
                 <option value="Watching">Watching</option>
                 <option value="completed">completed</option>
                 <option value="Plan to watch">Plan to watch</option>
